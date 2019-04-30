@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bot UI</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+      
+      
+     <!-- <script>
+
+        // Initialize the Amazon Cognito credentials provider
+    
+        //var url = window.location.href;
+        function getURLParameter(){
+            var values= {};
+            var regex = window.location.href.replace(/[?#&]+([^=&]+)=([^&]*)/gi, function(n, k, val){
+              values[k]= val;
+          });
+          return values;
+        }
+    
+           var jwt = getURLParameter()["client_id"];
+           console.log(jwt);
+    
+           AWS.config.region = 'us-east-1'; // Region
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+          IdentityPoolId: 'us-east-1:e7780fbd-3c39-40de-a2fc-8e41d7c3e21f',
+          Logins:{
+            'cognito-idp:us-east-1:152218969335:userpool/us-east-1_KU99vF6aX': jwt
+          }
+        });
+    
+        AWS.config.credentials.refresh(function(){
+    
+          var accessKeyId = AWS.config.credentials.accessKeyId;
+          var secretAccessKey = AWS.config.credentials.secretAccessKey;
+          var sessionToken = AWS.config.credentials.sessionToken;
+          AWS.config.region = 'us-east-1';
+          apigClient = apigClientFactory.newClient({
+    
+              accessKey: AWS.config.credentials.accessKeyId,
+              secretKey: AWS.config.credentials.secretAccessKey,
+              sessionToken: AWS.config.credentials.sessionToken,
+              region: 'us-east-1'
+    
+          });
+    
+          
+    
+        });
+    
+      </script>//-->
+  
+</head>
+
+<body>
+
+  <div class="chat-output" id="chat-output">
+  <div class="user-message">
+    <div class="message">Hi! I'm a bot. What's up?</div>
+  </div>
+</div>
+
+<div class="chat-input">
+  <form action="#0" id="user-input-form">
+    <input type="text" id="user-input" class="user-input" placeholder="Talk to the bot.">
+  </form>
+</div>
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.418.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+  <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+  <script type="text/javascript" src="apigClient.js"></script>
+  <script  src="js/index.js"></script>  
+
+    
+
+
+
+
+</body>
+
+</html>
