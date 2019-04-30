@@ -9,3 +9,5 @@ S3 Bucket Link: https://s3.console.aws.amazon.com/s3/buckets/chatbotluffy/?regio
 Link to chat page in the S3 bucket: https://s3.amazonaws.com/chatbotluffy/index.html
 
 Homepage: https://s3.amazonaws.com/chatbotluffy/index.html
+
+![Architecture](Architecture.png)
