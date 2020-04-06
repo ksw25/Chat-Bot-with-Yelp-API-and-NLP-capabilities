@@ -143,9 +143,8 @@ def elasticSearch(cuisine):
     elif(cuisine=="lebanese"):
         cuisine="Lebanese"
     """
-    url="https://search-resto-search-66oaw6qdzs3evbybend3wma2ym.us-east-1.es.amazonaws.com/restaurants/_search?q=cuisine:"+cuisine
+    url="Elastic endpoint"+cuisine
     print("==================")
-    #url = 'https://search-resto-search-hon6f7himq5oe47d42a2bdnh4y.us-east-1.es.amazonaws.com/restaurants/_search?q=cuisine:Indian'
     response=requests.get(url)
     hotels=json.loads(response.text)['hits']['hits']
     suggestions=[]
@@ -194,7 +193,7 @@ def loadDynamoAndElastic():
 def yelp(cuisine):
     url = "https://api.yelp.com/v3/businesses/search"
     payload = ""
-    headers={'Authorization': 'Bearer NYNyWecq6QWYX2CYmYmyQKJGAdEFMSzvTC2tYaSJ8gAXwbjjwyhlmllPXKM28CH1sm8ApCXo3KonuBLisKVX-cS0V__LDBX8cm6rJkMaP1Q5Pz9DE4tB-1n8c3CNXHYx'}
+    headers={'Authorization': 'Bearear Auth'}
 
     recommendation=[]
     for i in range(10):
