@@ -10,13 +10,8 @@ import decimal
 def lambda_handler(event, context):
     
     
-    #restos=[]
-    #restos=[{'id': 'xq0cX_DgxiJMXwhmEl9kUA', 'alias': 'café-china-new-york-2', 'name': 'Café China', 'image_url': 'https://s3-media2.fl.yelpcdn.com/bphoto/XSudwvbbAfYFYZViZB5ucw/o.jpg', 'is_closed': False, 'url': 'https://www.yelp.com/biz/caf%C3%A9-china-new-york-2?adjust_creative=uE4YsWaGl3VEU91vRGXLow&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=uE4YsWaGl3VEU91vRGXLow', 'review_count': 1382, 'categories': [{'alias': 'szechuan', 'title': 'Szechuan'}], 'rating': 4.0, 'coordinates': {'latitude': 40.7499225208569, 'longitude': -73.9819464127197}, 'transactions': ['pickup', 'restaurant_reservation', 'delivery'], 'price': '$$', 'location': {'address1': '13 E 37th St', 'address2': None, 'address3': '', 'city': 'New York', 'zip_code': '10016', 'country': 'US', 'state': 'NY', 'display_address': ['13 E 37th St', 'New York, NY 10016']}, 'phone': '+12122132810', 'display_phone': '(212) 213-2810', 'distance': 1180.6956479004084},{'id': 'ojbH3wnRu050hRhkmoxRiA', 'alias': 'han-dynasty-new-york-4', 'name': 'Han Dynasty', 'image_url': 'https://s3-media3.fl.yelpcdn.com/bphoto/fe5QaNZH6Qc-dbIDPwE2Ww/o.jpg', 'is_closed': False, 'url': 'https://www.yelp.com/biz/han-dynasty-new-york-4?adjust_creative=uE4YsWaGl3VEU91vRGXLow&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=uE4YsWaGl3VEU91vRGXLow', 'review_count': 514, 'categories': [{'alias': 'szechuan', 'title': 'Szechuan'}], 'rating': 4.0, 'coordinates': {'latitude': 40.78752, 'longitude': -73.97647}, 'transactions': ['pickup', 'restaurant_reservation', 'delivery'], 'price': '$$', 'location': {'address1': '215 W 85th St', 'address2': '', 'address3': '', 'city': 'New York', 'zip_code': '10024', 'country': 'US', 'state': 'NY', 'display_address': ['215 W 85th St', 'New York, NY 10024']}, 'phone': '+12128589060', 'display_phone': '(212) 858-9060', 'distance': 3045.824094143192}]
-    #insertDynamo(restos)
-    #insertElasticSearch(restos)
+  
 
-
-  #  loadDynamoAndElastic()
     
     message=SQSfetch()
     #print(message)
@@ -50,10 +45,10 @@ def verifyEmail(emailId):
 
 
 def sendEmail(resultData,recipient):
-    SENDER = "ksw352@nyu.edu"
+    SENDER = "Sender email id"
     RECIPIENT =recipient
-    #RECIPIENT = "karan25aug@gmail.com"
-    AWS_REGION = "us-east-1"
+    
+    AWS_REGION = "Region Name"
     
     SUBJECT = "Restaurant Recommendations"
     
@@ -112,7 +107,7 @@ def sendEmail(resultData,recipient):
 
 
 def dynamoSearch(ID):
-    dynamodb = boto3.resource("dynamodb", region_name='us-east-1')
+    dynamodb = boto3.resource("dynamodb", region_name='Region Name')
     
     table = dynamodb.Table('yelp-rest')
     
@@ -164,7 +159,7 @@ def elasticSearch(cuisine):
 def SQSfetch():   
     client = boto3.client('sqs')
     response = client.receive_message(
-        QueueUrl='https://sqs.us-east-1.amazonaws.com/152218969335/cdtsqs',
+        QueueUrl='Queue Address',
         AttributeNames=['All'],
         MessageAttributeNames=['cuisine','location','time','date','people']
     )
@@ -176,7 +171,7 @@ def SQSfetch():
 def SQSdelete(msgHandle):
     client = boto3.client('sqs')
     response = client.delete_message(
-        QueueUrl='https://sqs.us-east-1.amazonaws.com/152218969335/cdtsqs',
+        QueueUrl='Queue Address',
         ReceiptHandle=str(msgHandle)
     )
     
@@ -226,7 +221,7 @@ def yelp(cuisine):
 
 def insertDynamo(restos):
 
-    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+    dynamodb = boto3.resource('dynamodb', region_name='Region Name')
 
     table = dynamodb.Table('yelp-rest')
 
@@ -278,8 +273,8 @@ def insertDynamo(restos):
 
 
 def insertElasticSearch(restos):
-   # https://search-resto-search-66oaw6qdzs3evbybend3wma2ym.us-east-1.es.amazonaws.com
-    endpoint = 'https://search-resto-search-66oaw6qdzs3evbybend3wma2ym.us-east-1.es.amazonaws.com/restaurants/Restaurant'
+   
+    endpoint = 'Elastic Endpoint'
     
     headers = {'Content-type': 'application/json'}
        
@@ -302,7 +297,7 @@ def insertElasticSearch(restos):
 """
   headers = {'Content-type': 'application/json'}
        
-       API_ENDPOINT = "https://search-restaurants-yegdabho2nnbw7j2k4hkugyo5m.us-east-1.es.amazonaws.com/restaurants/Restaurant/"+item["id"]
+       API_ENDPOINT = "Dynamo endpoint"+item["id"]
        
        r = requests.post(url = API_ENDPOINT, data = data, headers=headers)
   data = json.dumps(data)
