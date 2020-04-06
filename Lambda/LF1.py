@@ -1,14 +1,4 @@
-"""
-cdt303 and sg5549
-"""
-"""
-This sample demonstrates an implementation of the Lex Code Hook Interface
-in order to serve a sample bot which manages orders for flowers.
-Bot, Intent, and Slot models which are compatible with this sample can be found in the Lex Console
-as part of the 'OrderFlowers' template.
-For instructions on how to set up and test this bot, as well as additional samples,
-visit the Lex Getting Started documentation http://docs.aws.amazon.com/lex/latest/dg/getting-started.html.
-"""
+
 import math
 import dateutil.parser
 import datetime
@@ -38,7 +28,7 @@ except ImportError:
     
 
 #Yelp API credentials
-API_KEY='NYNyWecq6QWYX2CYmYmyQKJGAdEFMSzvTC2tYaSJ8gAXwbjjwyhlmllPXKM28CH1sm8ApCXo3KonuBLisKVX-cS0V__LDBX8cm6rJkMaP1Q5Pz9DE4tB-1n8c3CNXHYx'
+API_KEY="Your Yelp Key"
 # API constants, you shouldn't have to change these.
 API_HOST = 'https://api.yelp.com'
 SEARCH_PATH = '/v3/businesses/search'
@@ -382,7 +372,7 @@ def findRestaurants(intent_request):
     
     client = boto3.client('sqs')
     response = client.send_message(
-        QueueUrl='https://sqs.us-east-1.amazonaws.com/152218969335/cdtsqs',
+        QueueUrl='Your Queue Url',
         MessageBody=json.dumps(att),
         MessageAttributes=att
     )
