@@ -10,11 +10,11 @@ function getUrlVars() {
 var id_token = getUrlVars()["id_token"];
 console.log('id_token: ' + id_token);
 
-AWS.config.region = 'us-east-1';
+AWS.config.region = 'Region Name';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:e7780fbd-3c39-40de-a2fc-8e41d7c3e21f',
+    IdentityPoolId: 'IdentityPoolId',
     Logins: {
-        'cognito-idp.us-east-1.amazonaws.com/us-east-1_KU99vF6aX': id_token
+        'Cognito address': id_token
     }
 });
 var apigClient;
@@ -26,8 +26,8 @@ AWS.config.credentials.refresh(function(){
     apigClient = apigClientFactory.newClient({
         accessKey: AWS.config.credentials.accessKeyId,
         secretKey: AWS.config.credentials.secretAccessKey,
-        sessionToken: AWS.config.credentials.sessionToken, // this field was missing
-        region: 'us-east-1'
+        sessionToken: AWS.config.credentials.sessionToken, 
+        region: 'Region Name'
     });
 });
  
@@ -50,7 +50,7 @@ $("#user-input-form").on("submit", function(e) {
 
 var additionalParams = {
   headers: {
-    "x-api-key" : 'vBthQe0OmS4fqAPsnoJcL5dWVqCDk00qardGYbl4',
+    "x-api-key" : 'x-api-key',
   },
   queryParams: {}
 };
